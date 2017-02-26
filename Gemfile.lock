@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/elabs/pundit.git
+  revision: 8b2d6381037ffe6792d193a2a4442b58a961e9e2
+  branch: master
+  specs:
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -73,6 +81,9 @@ GEM
       jsonapi-renderer (= 0.1.1.beta1)
     jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -94,8 +105,6 @@ GEM
     pg (0.19.0)
     powerpack (0.1.1)
     puma (3.7.1)
-    pundit (1.1.0)
-      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-cors (0.4.1)
     rack-test (0.6.3)
@@ -189,10 +198,11 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   faker
+  kaminari
   listen (~> 3.0.5)
   pg
   puma
-  pundit
+  pundit!
   rack-cors
   rails (~> 5.0.1)
   rspec
