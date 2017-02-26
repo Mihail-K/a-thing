@@ -46,6 +46,10 @@ class PasswordReset < ApplicationRecord
     after_save :update_user_password
   end
 
+  def readonly?
+    super || %w(completed expired).include?(status_was)
+  end
+
 private
 
   def set_user_from_email

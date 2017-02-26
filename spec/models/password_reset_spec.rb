@@ -57,6 +57,11 @@ RSpec.describe PasswordReset, type: :model do
       should be_valid
     end
 
+    it 'is readonly once saved' do
+      subject.save
+      should be_readonly
+    end
+
     it 'is invalid without a user' do
       subject.user = nil
       should be_invalid

@@ -21,6 +21,12 @@ class ApplicationController < ActionController::API
     render json: { errors: error.record.errors }, status: :unprocessable_entity
   end
 
+  rescue_from ActiveRecord::ReadOnlyRecord do |error|
+    error.message =~ /\A([A-Za-z0-9_]+)/
+    name = Regexp.last_match(1)&.safe_constantize&.model_name&.singular || 'object'
+    render json: { errors: { name => ['cannot be modified'] } }, status: :unprocessable_entity
+  end
+
 protected
 
   def authorize_user!
