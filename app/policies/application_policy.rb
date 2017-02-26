@@ -1,5 +1,17 @@
 # frozen_string_literal: true
 class ApplicationPolicy
+  module Common
+    def authenticated?
+      current_user.present?
+    end
+
+    def guest?
+      !authenticated?
+    end
+  end
+
+  include Common
+
   attr_reader :current_user, :record
 
   def initialize(current_user, record)
@@ -32,6 +44,8 @@ class ApplicationPolicy
   end
 
   class Scope
+    include Common
+
     attr_reader :current_user, :scope
 
     def initialize(current_user, scope)

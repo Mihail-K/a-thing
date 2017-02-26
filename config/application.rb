@@ -24,5 +24,7 @@ module PonyApp
       g.test_framework      :rspec
       g.fixture_replacement :factory_girl
     end
+
+    ActiveModelSerializers.config.adapter = :json
   end
 end

@@ -2,6 +2,11 @@
 class ApplicationController < ActionController::API
   include Pundit
 
+  if Rails.env.development? || Rails.env.test?
+    after_action :verify_authorized
+    after_action :verify_policy_scoped, except: :create
+  end
+
   rescue_from Pundit::NotAuthorizedError do
     head current_user.nil? ? :unauthorized : :forbidden
   end
@@ -29,6 +34,14 @@ protected
 
   def current_user
     current_session&.user
+  end
+
+  def meta_for(relation)
+    { page:  relation.current_page,
+      prev:  relation.prev_page,
+      next:  relation.next_page,
+      total: relation.total_count,
+      pages: relation.total_pages }
   end
 
   def session_token
