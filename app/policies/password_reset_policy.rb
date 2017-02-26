@@ -10,6 +10,14 @@ class PasswordResetPolicy < ApplicationPolicy
     true
   end
 
+  def permitted_attributes_for_create
+    :email
+  end
+
+  def permitted_attributes_for_update
+    [:status, :password, :password_confirmation]
+  end
+
   class Scope < Scope
     def resolve
       scope.pending
