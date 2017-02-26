@@ -1,0 +1,18 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - bin/*
+    - db/schema.rb
+  TargetRubyVersion: 2.3
+
+Metrics/LineLength:
+  Max: 120
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails

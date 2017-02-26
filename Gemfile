@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
@@ -9,6 +10,8 @@ gem 'puma'
 gem 'pundit'
 gem 'rack-cors'
 gem 'rails', '~> 5.0.1'
+gem 'rubocop'
+gem 'thor', '0.19.1'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development do
