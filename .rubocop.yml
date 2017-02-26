@@ -11,8 +11,15 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Max: 120
 
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*.rb
+
 Rails:
   Enabled: true
+
+Rails/SkipsModelValidations:
+  Enabled: false
 
 Style/AccessModifierIndentation:
   EnforcedStyle: outdent

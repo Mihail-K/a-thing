@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226175501) do
+ActiveRecord::Schema.define(version: 20170226195503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "password_resets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "status",     default: "pending", null: false
+    t.string   "email",                          null: false
+    t.inet     "ip"
+    t.inet     "remote_ip"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["id"], name: "index_password_resets_on_id", unique: true, using: :btree
+    t.index ["status"], name: "index_password_resets_on_status", using: :btree
+    t.index ["user_id", "status"], name: "index_password_resets_on_user_id_and_status", unique: true, where: "((status)::text = 'pending'::text)", using: :btree
+    t.index ["user_id"], name: "index_password_resets_on_user_id", using: :btree
+  end
 
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer  "user_id",                   null: false
@@ -41,5 +55,6 @@ ActiveRecord::Schema.define(version: 20170226175501) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "password_resets", "users", on_delete: :cascade
   add_foreign_key "sessions", "users", on_delete: :cascade
 end
