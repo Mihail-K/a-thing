@@ -29,7 +29,7 @@ protected
 
   def current_session
     return @current_session if defined?(@current_session) || session_token.blank?
-    @current_session = Session.find_by(id: session_token)
+    @current_session = Session.active.find_by(id: session_token)
   end
 
   def current_user
