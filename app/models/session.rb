@@ -28,7 +28,7 @@ class Session < ApplicationRecord
   before_validation :set_expires_at, on: :create, if: -> { expires_at.nil? }
 
   scope :active, lambda {
-    where(active: true).where('sessions.expires_at < ?', Time.current)
+    where(active: true).where('sessions.expires_at > ?', Time.current)
   }
 
 private
