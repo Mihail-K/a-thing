@@ -11,6 +11,9 @@ Metrics/LineLength:
 Rails:
   Enabled: true
 
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
 Style/Documentation:
   Enabled: false
 
