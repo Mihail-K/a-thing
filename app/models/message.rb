@@ -19,4 +19,7 @@ class Message < ApplicationRecord
   belongs_to :author, class_name: 'User'
 
   validates :body, presence: true, length: { maximum: 1000 }
+
+  scope :before, -> (time) { where('messages.created_at < ?', time) if time.present? }
+  scope :after,  -> (time) { where('messages.created_at > ?', time) if time.present? }
 end
